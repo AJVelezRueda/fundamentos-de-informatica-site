@@ -7,8 +7,6 @@
 
 [volver al inicio](./index.md)  
 
-<br/>
-
 # Editores que pueden usarse para código Python
 
 ## Editores clásicos

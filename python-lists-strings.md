@@ -7,8 +7,6 @@
 
 [volver al inicio](./index.md)  
 
-<br/>
-
 # Python: listas y Strings
 
 ## Listas

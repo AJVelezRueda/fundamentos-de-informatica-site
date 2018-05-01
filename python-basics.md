@@ -5,6 +5,8 @@
 }
 </style>
 
+[volver al inicio](./index.md)  
+
 # Python: un pantallazo para arrancar
 
 ## Elementos iniciales
