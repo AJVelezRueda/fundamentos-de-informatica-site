@@ -5,6 +5,14 @@
 }
 </style>
 
+**Material sobre Python**
+[Primer pantallazo](./python-basics.md)  
+[Listas y Strings](./python-lists-strings.md)  
+
+**Ecosistema de Python**
+[Entornos para editar y ejecutar programas](./python-environments.md)  
+<br/>
+
 # Introducción
 La intención de este sitio es acompañar el curso "Fundamentos de Informática" del Doctorado en Ciencia y Tecnología de la UNQ.
 

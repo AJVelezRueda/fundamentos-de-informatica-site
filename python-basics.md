@@ -33,13 +33,49 @@ Al contrario de la mayor parte de los lenguajes, en Python no es necesario encer
 
 ## Estructuras de repetición
 
-### Bloque for
+### Bloque `for`, en general
 ```
 for variable in iterable: 
     bloque
 ```
 Hay muchas opciones para iterable, entre ellas: listas, arrays, diccionarios, sets, `range` entre otras. 
 
+### Bloque `for` usando `range`
+La construcción `range` permite armar bloques que se repiten una cantidad determinada de veces, indexados por un entero.  
+En este ejemplo muy sencillo, se hace iteración de 5 veces indexadas por los números 0 a 4.
+```
+for variable in range(5): 
+    bloque
+```
 
-range(min,max) te da un lindo iterable
-while cond: block 
+Si reemplazamos `range(5)` por
+* `range(2,12)`: obtenemos 10 iteraciones, indexadas por los números 2 a 11 respectivamente.
+* `range(2,12,2)`: obtenemos 5 iteraciones, indexadas por 2, 4, 6, 8, 10.
+
+Se puede jugar con números negativos.
+
+### Bloque `while`
+```
+while condicion:
+    bloque
+```
+
+
+<br/>
+
+## Una curiosidad cómoda: el operador ternario
+```
+<valorTrue> if <condicion> else <valorFalse>
+```
+
+P.ej. el resultado de 
+```
+3 if 'a' < 'b' else 4
+```
+es `3`, mientras que el de
+```
+3 if 'c' < 'b' else 4
+```
+es `4`.
+
+Sirve para evitar la definición de variables, puede ser muy práctico.
