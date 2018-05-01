@@ -5,11 +5,11 @@
 }
 </style>
 
-**Material sobre Python**
+**Material sobre Python**  
 [Primer pantallazo](./python-basics.md)  
 [Listas y Strings](./python-lists-strings.md)  
 
-**Ecosistema de Python**
+**Ecosistema de Python**  
 [Entornos para editar y ejecutar programas](./python-environments.md)  
 <br/>
 

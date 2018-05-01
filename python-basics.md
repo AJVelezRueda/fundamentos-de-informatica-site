@@ -19,13 +19,13 @@ En algunos aspectos, el comportamiento de Python difiere del de la mayor parte d
 
 ## Condicional
 ```
-if condicion-1: 
-    bloque 
-elif condicion-2: 
-    bloque
+if <condicion-1>: 
+    <bloque-1> 
+elif <condicion-2>: 
+    <bloque-2>
 # puede haber varios bloques "elif"
 else: 
-    bloque
+    <bloque-else>
 ```
 Al contrario de la mayor parte de los lenguajes, en Python no es necesario encerrar las condiciones entre paréntesis.
 
@@ -35,8 +35,8 @@ Al contrario de la mayor parte de los lenguajes, en Python no es necesario encer
 
 ### Bloque `for`, en general
 ```
-for variable in iterable: 
-    bloque
+for <variable> in <iterable>: 
+    <bloque>
 ```
 Hay muchas opciones para iterable, entre ellas: listas, arrays, diccionarios, sets, `range` entre otras. 
 
@@ -44,8 +44,8 @@ Hay muchas opciones para iterable, entre ellas: listas, arrays, diccionarios, se
 La construcción `range` permite armar bloques que se repiten una cantidad determinada de veces, indexados por un entero.  
 En este ejemplo muy sencillo, se hace iteración de 5 veces indexadas por los números 0 a 4.
 ```
-for variable in range(5): 
-    bloque
+for <variable> in range(5): 
+    <bloque>
 ```
 
 Si reemplazamos `range(5)` por
@@ -56,10 +56,16 @@ Se puede jugar con números negativos.
 
 ### Bloque `while`
 ```
-while condicion:
-    bloque
+while <condicion>:
+    <bloque>
 ```
 
+### Corte de repetición
+Python incorpora estos dos comandos, que pueden usarse dentro del bloque de una estructura de repetición (ya sea `for` o `while`):
+* `break`: termina inmediatamente con el bloque de repetición, la ejecución pasa a la primer línea debajo al bloque de repetición.
+*  `continue`, termina con la iteración del bloque, la ejecución pasa a la primer línea *dentro* del bloque de repetición.
+
+Para más detalles, consultar [esta página](https://www.programiz.com/python-programming/break-continue).
 
 <br/>
 
@@ -78,4 +84,4 @@ es `3`, mientras que el de
 ```
 es `4`.
 
-Sirve para evitar la definición de variables, puede ser muy práctico.
+Sirve para evitar la definición de variables, puede ser muy práctico, p.ej. en *list comprehensions*.
