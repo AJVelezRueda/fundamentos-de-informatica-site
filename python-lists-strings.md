@@ -202,4 +202,45 @@ Insistimos en que lo que se obtiene **no** es una lista:
 <br/>
 
 ## Strings
-... continuará ...
+Python incluye varias herramientas para trabajar con Strings. Muchos son métodos, pues los Strings son objetos, existe una clase String.
+
+Un catálogo completo de las operaciones que soportan los Strings puede encontrarse en [la documentación de Python 3](https://docs.python.org/3/library/stdtypes.html#string-methods).
+
+**Importante**  
+Los Strings son *inmutables*, o sea, una vez construidos no se pueden modificar. Por lo tanto, *ninguna* operación sobre Strings es 'in-place'.
+
+<br/>
+
+### Caracteres especiales, *raw strings*
+Los strings pueden incluir caracteres especiales, p.ej. `\n` que representa un salto de línea. Por eso, p.ej. `len('ho\nla')` es 5 (no 6), `'ho\nla'[2]` es `\n` y `'ho\nla'[3]` es `l`.
+
+Para poner una barra invertida, se pone `\\`. P.ej. `'ho\\la'[2]` es la barra invertida, que se muestra como `\\`.
+
+Otra opción es usar un *raw string*. Si adelante de las comillas se pone una `r`, entonces el string se toma literal. P.ej. `len(r'ho\nla')` es `6`, `r'ho\nla'[2]` es la barra invertida, y `r'ho\nla'[3]` es `n`.
+
+<br/>
+
+### Operaciones básicas
+Las notaciones `[n]`, `[n:m]`, `+`, `*` funcionan para String con el mismo sentido que para listas.  
+La notación `in` también, pero con una diferencia: detecta subsecuencias, no solamente elementos. Va con ejemplos:
+```
+>>> [8,3] in [2,8,3,5,1]
+False
+>>> "ep" in "pepita"
+True
+```
+
+La función `len` y los métodos `count`, `index` también funcionan con String en forma análoga a con listas. Otra vez, `count` e `index` detectan también subsecuencias.
+
+</br>
+
+### Variantes de un String
+La clase String incluye muchos métodos que devuelven variantes del String original.  
+* Manejo de minúsculas y mayúsculas: `lower`, `upper`, `title`.
+* Sacar espacios, rellenar con ceros o con un caracter a elección: `strip`, `lstrip`, `rstrip`, `zfill`, `center`, `ljust`, `rjust`.
+* Reemplazar tabs por espacio: `expandtabs`.
+
+</br>kl
+
+
+
