@@ -13,7 +13,7 @@
 [Entornos para editar y ejecutar programas](./python-environments.md)  
 <br/>
 
-**Ejercitación**
+**Ejercitación**  
 [página de ejercicios](./ejercitacion.md)  
 
 # Introducción
