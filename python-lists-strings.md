@@ -198,6 +198,7 @@ Insistimos en que lo que se obtiene **no** es una lista:
 ```
 (repetimos la list comprehension abajo para que se vea bien la comparación).
 
+[Esta página](https://medium.freecodecamp.org/python-list-comprehensions-vs-generator-expressions-cef70ccb49db) incluye más info sobre el tema.
 
 <br/>
 
