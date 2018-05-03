@@ -107,46 +107,54 @@ P.ej. `enAbsoluto([3, -8, 21, 94, 9, -41])` debe evaluar a `[3, 8, 21, 94, 9, 41
 1. `positivosAlDoble(list)`, devuelve la lista conformada por el doble de cada elemento positivo de `list`.  
 P.ej. `positivosAlDoble([3, -8, 21, 94, 9, -41])` debe evaluar a `[6,42,188,18]`.
 
-1.
+1. `elementosEntre(list,min,max)`, la lista conformada por los elementos de `list` cuyo valor esté entre `min` y `max`.  
+P.ej. `elementosEntre([3, 8, 21, 94, 9, 41], 10, 50)` debe evaluar a `[21,41]`.
+
+<br/>
+
+## Listas - un poco más complejos
+1. `sinElMaximo(list)`, devuelve la lista conformada por todos los elementos de `list` salvo el máximo.  
+P.ej. `sinElMaximo([3, 8, 21, 94, 9, 41])` debe evaluar a `[3, 8, 21, 9, 41]`.
+
+1. `sinValoresExtremos(list)`, devuelve la lista conformada por todos los elementos de `list` salvo el mínimo y el máximo.
+
+1. `llevandoTodosAlMenosA(list,n)`, devuelve la lista producto de reemplazar en `list` cada elemento menor a `n`, por `n`. La lista `list` no debe modificarse.  
+P.ej. `llevandoTodosAlMenosA([3, 8, 21, 94, 9, 41],10)` debe evaluar a `[10, 10, 21, 94, 10, 41]`.
+
+1. `agregandoPares(list1,list2)`, devuelve el resultado de concatenar a `list1`, los elementos pares de `list2`. No deben modificarse ni `list1` ni `list2`.  
+P.ej. `agregandoPares([3,8,21,94,9,41],[11,12,17,21,4])` debe evaluar a `[3,8,21,94,9,41,12,4]`: todos los de `list1`, seguidos por los pares en `list2`.  
+Se puede usar la función `multiplos` definida en un punto anterior.
+
+1. `desviaciones(list)`, devuelve la lista formada por la desviación (en valor absoluto) de cada elemento de `list` respecto de su promedio.  
+P.ej. `initialex.desviaciones([7,8,3,5,2])` debe evaluar a `[2.0, 3.0, 2.0, 0.0, 3.0]`.  
+Se puede usar la función `promLista` definida en un punto anterior.
+
+1. `desviacionMedia(list)`, devuelve la desviación media de la lista (o sea, el promedio de las desviaciones de cada elemento).  
+P.ej. `desviacionMedia([7,8,3,5,2])` debe evaluar a `2.0`.
 
 
+<br/>
 
+## Para investigar otros temas
+Se presentan algunas funciones para cuya resolución pueden servir algunas herramientas que no vimos en la reunión del miércoles 2 de mayo, para los curiosos.
 
-<!--
-def elementosEntre(list,min,max):
-    return [x for x in list if x >= min and x <= max ]
+1. `productoPuntual`, recibe dos listas (o iteradores) de la misma longitud, devuelve la lista formada por el producto de los elementos correspondientes por posición.  
+P.ej. `productoPuntual([3,8,21,94,9,41], [2,3,1,4,2,3])` debe evaluar a `[6, 24, 21, 376, 18, 123]`.  
+Se puede resolver en una línea, usando la función `zip` y una list comprehension.
 
-def sinElMaximo(list):
-    return [x for x in list if x < max(list)]
+2. `productoProgresivo`, recibe una lista, devuelve el resultado de multiplicar el primer elemento por 1, el segundo por 2, el tercero por 3 y así siguiendo.  
+P.ej. `productoProgresivo([3,8,21,94,9,41])` debe evaluar a `[3, 16, 63, 376, 45, 246]`.  
+Se puede resolver en una línea, usando el punto anterior y `range`.
 
-def sinValoresExtremos(list):
-    return [x for x in list if x not in valoresExtremos(list)]
+1. `esListaOrdenada(list)`: debe devolver `True` si los elementos de `list` están ordenados de menor a mayor, y `False` en caso contrario.  
+Se puede resolver en una línea. En mi resolución, armé la de los pares de elementos consecutivos de `list` usando `zip`, y usé la función `all` para la evaluación.
 
-def llevandoTodosAlMenosA(list,n):
-    return [max(n,x) for x in list]
+1. `puntosEntre(inicio,fin)`: `inicio` y `fin` son dos pares ordenados, devuelve la lista (o iterador) de puntos de coordenadas enteras que entran en el cuadrado delimitado por estos dos puntos.  
+P.ej. `puntosEntre((1,1),(3,4))` debe evaluar a la lista `[(1, 1), (1, 2), (1, 3), (1, 4), (2, 1), (2, 2), (2, 3), (2, 4), (3, 1), (3, 2), (3, 3), (3, 4)]`, o a un generador de dicha lista.  
+En mi resolución, usé una list comprehension con dos `for` que arma un producto cartesiano.
 
-def agregandoPares(list1, list2):
-    return list1 + multiplos(list2, 2)
+1. `esReordenamientoDe(list1,list2)`, indica si `list2` tiene los mismos elementos de `list1`, tal vez en distinto orden. En realidad los "list" pueden ser también generadores.  
+P.ej. `initialex.esReordenamientoDe([1,3,5,2,0,4], range(6))` debe evaluar a `True`.  
+De este propongo dos resoluciones: una que aprovecha la función `set`, otra que usa la función `all`.
 
-def desviaciones(list):
-    return [abs(x - promLista(list)) for x in list]
-
-def desviacionMedia(list):
-    return promLista(desviaciones(list))
-
-def productoPuntual(list1,list2):
-    return [n * m for n,m in zip(list1,list2)]
-
-def productoProgresivo(list):
-    return productoPuntual(list, (x+1 for x in range(len(list))))
-
-def esListaOrdenada(list):
-    return all(n1 < n2 for (n1,n2) in zip(list, list[1:]))
-
-def puntosEntre(inicio,fin):
-    ix, iy = inicio
-    fx, fy = fin
-    return ((x,y) for x in range(ix, fx+1) for y in range(iy, fy+1))
-
--->
-
+ 
