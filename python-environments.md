@@ -13,13 +13,15 @@
 P.ej. `vi` o `vim`.
 
 ## Editores modernos
-P.ej. **Sublime Text**, **Atom** o **Visual Studio Code**.
+P.ej. [**Sublime Text**](https://www.sublimetext.com/3) , [**Atom**](https://atom.io/) o [**Visual Studio Code**](https://code.visualstudio.com/download).
 Estos editores incluyen, o puede agregarse, soporte para el lenguaje que incluye coloreo por sintaxis, opciones de autocompletado, y tal vez algunas otras funcionalidades.
 
 ## PyCharm
 Es un *entorno integrado de desarrollo*, o *IDE* para Python.  
 Incluye varias capacidades relacionadas con el lenguaje, como coloreo, navegación por las definiciones, opciones de autocompletado que funcionan bastante bien, facilitación de cambios de nombre, y otros.  
-También se puede ejecutar código, y tests automáticos, dentro del mismo entorno.
+También se puede ejecutar código, y tests automáticos, dentro del mismo entorno.  
+Se baja del [sitio de JetBrains](https://www.jetbrains.com/pycharm/download/#section=windows), la empresa que lo produce. 
+Recuerden que con una dirección ".edu" se puede acceder a licencias para los productos profesionales de JetBrains.
 
 <br/>
 

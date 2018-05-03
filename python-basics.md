@@ -9,6 +9,11 @@
 
 # Python: un pantallazo para arrancar
 
+## Recursos en general
+Por lo que voy viendo, [este tutorial de Python](https://www.programiz.com/python-programming/first-program) parece bien escrito.
+
+También está el [tutorial oficial de Python](https://docs.python.org/3/tutorial/index.html).
+
 ## Elementos iniciales
 Variables y funciones.
 

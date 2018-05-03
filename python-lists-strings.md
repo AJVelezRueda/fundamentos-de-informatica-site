@@ -12,6 +12,10 @@
 ## Listas
 Conforman la estructura de más sencilla, directa y utilizada en Python.
 
+En lo que sigue se introducen muchas operaciones que se pueden hacer sobre listas. Varias de ellas sólo se mencionan.
+En [este link](https://www.programiz.com/python-programming/list) pueden encontrar más detalles. 
+
+
 ### Construcción y acceso a elementos
 Para construir una lista, la notación más sencilla es con corchetes, p.ej.
 ```
@@ -182,6 +186,10 @@ El operador ternario me da flexibilidad, p.ej. los menores a 10 al doble y el re
 [36, 45, 4, 16, 93]
 ```
 
+Esta notación admite más variables, se puede ver [la página al respecto en el tutorial oficial de Python](https://docs.python.org/3/tutorial/datastructures.html).
+
+<br/>
+
 Si en lugar de corchetes (list comprehension) ponemos paréntesis (generator expression), lo que obtenemos es un iterador, similar a lo que nos dan `map` o `filter`. Por eso, para obtener el primero que cumpla una condición conviene paréntesis:
 ```
 >>> next(x for x in nums if x > 10)
@@ -198,6 +206,7 @@ Insistimos en que lo que se obtiene **no** es una lista:
 ```
 (repetimos la list comprehension abajo para que se vea bien la comparación).
 
+[Esta página](https://medium.freecodecamp.org/python-list-comprehensions-vs-generator-expressions-cef70ccb49db) incluye más info sobre la comparación entre list comprehensions y generator expressions.
 
 <br/>
 
@@ -240,7 +249,7 @@ La clase String incluye muchos métodos que devuelven variantes del String origi
 * Sacar espacios, rellenar con ceros o con un caracter a elección: `strip`, `lstrip`, `rstrip`, `zfill`, `center`, `ljust`, `rjust`.
 * Reemplazar tabs por espacio: `expandtabs`.
 
-</br>kl
+</br>
 
 
 
