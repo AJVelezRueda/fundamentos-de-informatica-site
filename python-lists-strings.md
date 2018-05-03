@@ -13,7 +13,7 @@
 Conforman la estructura de más sencilla, directa y utilizada en Python.
 
 En lo que sigue se introducen muchas operaciones que se pueden hacer sobre listas. Varias de ellas sólo se mencionan.
-En [este link])(https://www.programiz.com/python-programming/list) pueden encontrar más detalles. 
+En [este link](https://www.programiz.com/python-programming/list) pueden encontrar más detalles. 
 
 
 ### Construcción y acceso a elementos
@@ -249,7 +249,7 @@ La clase String incluye muchos métodos que devuelven variantes del String origi
 * Sacar espacios, rellenar con ceros o con un caracter a elección: `strip`, `lstrip`, `rstrip`, `zfill`, `center`, `ljust`, `rjust`.
 * Reemplazar tabs por espacio: `expandtabs`.
 
-</br>kl
+</br>
 
 
 
