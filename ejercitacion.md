@@ -14,6 +14,7 @@
 Definir las siguientes funciones numéricas
 1. `prom3` que recibe tres números y devuelve su promedio.  
   P.ej. `prom3(1,2,4)` debe evaluar a `2.3333333333` aprox..
+  
 1. `estanOrdenados` que recibe tres números, y devuelve `True` si están ordenados de menor a mayor, o `False` en caso contrario.  
   P.ej. `estanOrdenados(1,2,4)` y `estanOrdenados(11,2,4)` deben evaluar a `True` y `False` respectivamente.
 
