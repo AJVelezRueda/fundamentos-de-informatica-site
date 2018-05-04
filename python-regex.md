@@ -105,18 +105,18 @@ Un comentario sintáctico: en la expresión `re.search("X(.*)Y", "aaXbbbYj").gro
 ## Un detalle: matches exteriores o interiores
 Evaluemos este caso:
 ```
->>> re.search("X(.*)Y", "aaXbbbYjjXtagYpp").group(1)
+>>> re.search("X(.*)Y", "aaXbbbYjjXtaggaYpp").group(1)
 'bbbYjjXtag'
 ```
 Cabe la pregunta de por qué el resultado no es `bbb`, que también es una subsecuencia encerrada entre una `X` y una `Y`.
 
-Para responder, notemos que el String incluye *tres* matches de la expresión regular, a saber: `XbbbY`, `XtagY` y `XbbbYjjXtagY`. El último incluye propiamente a los otros dos, llamémoslo *externo*.
+Para responder, notemos que el String incluye *tres* matches de la expresión regular, a saber: `XbbbY`, `XtaggaY` y `XbbbYjjXtaggaY`. El último incluye propiamente a los otros dos, llamémoslo *externo*.
 
 Ahora podemos dar una respuesta: la expresión regular `X(.*)Y` prioriza los matches externos. Si queremos obtener, en este caso, el primer match interno, debemos usar la variante `X(.*?)Y`. El signo de interrogación siguiendo a un asterisco especifica la preferencia por matches internos.
 
 Veamos:
 ```
->>> re.search("X(.*?)Y", "aaXbbbYjjXtagYpp").group(1)
+>>> re.search("X(.*?)Y", "aaXbbbYjjXtaggaYpp").group(1)
 'bbb'
 ```
 Efectivamente, obtuvimos el primer match interno.
@@ -126,12 +126,98 @@ En la documentación de Python, y probablemente en otras fuentes, la preferencia
 <br/>
 
 ## Obtener todos los matches
+Si un String incluye varios matches de una misma expresión regular, las funciones `findall` y `finditer` permiten obtener todos los substrings correspondientes.
+
+La función `findall` es la más fácil de usar, devuelve una lista de los substrings:
+```
+>>> re.findall("X(.*?)Y", "aaXbbbYjjXtaggaYpp")
+['bbb', 'tagga']
+```
+Como se ve en el ejemplo, obtenemos las subsecuencias sin los delimitadores, análogo a la variante `group(1)` que usamos con `search`.
+
+Por su parte, la función `finditer` devuelve un iterador de *match objects*, a cada uno de ellos le podemos pedir `group(0)` o `group(1)`. Para obtener la misma lista que devuelve `findall`, podemos hacer
+```
+>>> [x.group(1) for x in re.finditer("X(.*?)Y", "aaXbbbYjjXtaggaYpp")]
+['bbb', 'tagga']
+```
 
 <br/>
 
-## Expresiones regulares: variantes y construcción dinámica
+## Variantes en expresiones regulares
+Hasta ahora trabajamos con solamente dos expresiones regulares, que aceptan strings que empiecen y terminen con delimitadores determinados.
+
+Podemos estar interesados solamente en las subsecuencias con delimitadores que tengan una determinada *longitud*, o un rango de longitudes. P.ej. 
+
+```
+>>> re.findall("X(.*?)Y","aaXbbbYjjXtaggaYppXtctcYagagact")
+['bbb', 'tagga', 'tctc']
+>>> re.findall("X(.{4})Y","aaXbbbYjjXtaggaYppXtctcYagagact")
+['tctc']
+>>> re.findall("X(.{1,4})Y","aaXbbbYjjXtaggaYppXtctcYagagact")
+['bbb', 'tctc']
+```
+El String `"aaXbbbYjjXtaggaYppXtctcYagagact"` incluye tres subsecuencias internas delimitadas por `X` e `Y`, de 3, 5 y 4 caracteres. En el segundo `findall` se piden las subsecuencias de exactamente 4 caracteres, en el tercero las que tienen entre 1 y 4.
+
+Otra opción es buscar solamente ciertos caracteres, en lugar de cualquier caracter entre los delimitadores. P.ej. 
+```
+>>> re.findall("X((a|c|t|g)*)Y","aaXbbbYjjXtaggaYppXtctcYagagact")
+[('tagga', 'a'), ('tctc', 'c')]
+```
+aquí se buscan solamente las cadenas delimitadas por X e Y que incluyan solamente las letras `a`, `c`, `g` o `t`. 
+En este punto debo hacer una confesión: no termino de entender por qué evalúa a una lista de pares, y definitivamente no sé cómo arreglarlo. Para obtener el resultado análogo a las otras expresiones, pues deberé trabajar con lo que `findall` decide darme:
+```
+>>> [x[0] for x in re.findall("X((a|c|t|g)*)Y","aaXbbbYjjXtaggaYppXtctcYagagact")]
+['tagga', 'tctc']
+```
+
+Finalmente mencionamos que los delimitadores pueden tener más de un caracter, p.ej.
+```
+>>> re.findall("ag(.*?)ct","aaXbbbYjjXtaggaYppXtctcYagagact")
+['gaYppXt', 'aga']
+```
+
+Hay una multitud de otras variantes, que se pueden consultar en la documentación y en otros tutoriales.
 
 <br/>
+
+# Construcción dinámica de expresiones regulares
+Imaginemos que queremos armar una función que devuelva las subsecuencias de un String que hacen match con una expresión regular delimitada, pero donde los delimitadores sean variables.
+Digamos una función `delimitedParts` que recibe el String a analizar y los delimitadores, p.ej. 
+```
+>>> delimitedParts('aaaFbbbGrefHadxFacacgGxxxFsHwGu', 'F', 'G')
+['bbb', 'acacg', 'sHw']
+>>> delimitedParts('aaaFbbbGrefHadxFacacgGxxxFsHwGu', 'G', 'H')
+['ref', 'xxxFs']
+```
+
+La función `delimitedParts` se puede resolver usando una expresión regular ... que debe formarse a partir de los valores de los parámetros segundo y tercero. En los ejemplos, las expresiones deben ser `F(.*?)G` y `G(.*?)H` respectivamente.
+
+Afortunadamente, las expresiones regulares se manejan como Strings, que se pueden ensamblar dentro de la función:
+```
+def delimitedParts(theString,start,end):
+    return re.findall(start + '(.*?)' + end, theString)
+```
+
+o lo que es equivalente
+```
+def delimitedParts(theString,start,end):
+    regex = start + '(.*?)' + end
+    return re.findall(regex, theString)
+```
+
+<br/>
+
+## Reemplazos masivos usando expresiones regulares
+La función `sub` permite reemplazar todos los matchs de una expresión regular en un String por otro String, que puede hacer incluso referencia al match.
+Me limito a dejar un ejemplo, consultar los detalles en la documentación.
+```
+>>> re.sub('X(.*?)Y', r'Y\1X', 'alfaXeeejYlaXlaYjj')
+'alfaYeeejXlaYlaXjj'
+```
+... o sea, se invirtieron los delimitadores en las secciones delimitadas por X e Y.
+
+
+
 
 
 
