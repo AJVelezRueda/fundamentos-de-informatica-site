@@ -5,6 +5,9 @@
 }
 </style>
 
+**Cuestiones generales sobre programación**  
+[Programación orientada a Objetos](./oop-intro.md)  
+
 **Material sobre Python**  
 [Primer pantallazo](./python-basics.md)  
 [Listas y Strings](./python-lists-strings.md)  
