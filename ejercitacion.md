@@ -42,7 +42,7 @@ Definir las siguientes funciones que involucran listas de números.
 P.ej. `productoPrimerosDos([3, 8, 21, 94, 9, 41])` debe evaluar a 24.
 
 1. `productoUltimosDos`, recibe una lista, devuelve el producto de sus *últimos* dos elementos.  
-P.ej. `productoPrimerosDos([3, 8, 21, 94, 9, 41])` debe evaluar a 369 (41 * 9).  
+P.ej. `productoUltimosDos([3, 8, 21, 94, 9, 41])` debe evaluar a 369 (41 * 9).  
 Ayuda: recordar que se pueden usar índices negativos.
 
 1. `sumaDosElems`, recibe una lista y dos índices, devuelve la suma de los elementos de la lista en esos índices.  

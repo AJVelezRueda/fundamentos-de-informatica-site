@@ -251,5 +251,55 @@ La clase String incluye muchos métodos que devuelven variantes del String origi
 
 </br>
 
+### String: análisis y síntesis
+Otros métodos en la clase String nos permiten descomponer un String, o ensamblar uno a partir de varios. Mencionamos algunos, buscarlos en la documentación sobre String referida más arriba.
+* Para descomponer un String: `split`, `rsplit`, `splitlines`.
+* Para ensamblar un String: `join`.
+
+Van dos ejemplos
+```
+>>> "abcXrjqXppqeofXace".split("X")
+['abc', 'rjq', 'ppqeof', 'ace']
+>>> " ".join(["Había", "una", "vez", "una", "vaca"])
+'Había una vez una vaca'
+```
+
+</br>
+
+### Consultas sobre un String
+Mencionamos varios métodos que dan información sobre un String:
+* sobre los extremos: `startswith`, `endswith`.
+* búsqueda de un substring: `index`, `find`, `count`.
+
+Algunos ejemplos:
+```
+>>> 'ATACCGTAGCGTAC'.index('CG')
+4
+>>> 'ATACCGTAGCGTAC'.count('CG')
+2
+>>> 'ATACCGTAGCGTAC'.startswith('ATA')
+True
+>>> 'ATACCGTAGCGTAC'.endswith('ATA')
+False
+```
+
+</br>
+
+### Un método bastante popular
+Es el `format`, de ayuda cuando se quieren armar mensajes. Van tres ejemplos
+```
+>>> 'La casa de {0} es muy {1}, según {2}'.format("Pepe", "grande", "Laura")
+'La casa de Pepe es muy grande, según Laura'
+>>> '{2} opina que la casa de {0} es muy {1}'.format("Pepe", "grande", "Laura")
+'Laura opina que la casa de Pepe es muy grande'
+>>> '{visitante} opina que la casa de {duenio} es muy {caract}'.format(duenio= "pepe", visitante= "Laura", caract= "grande")
+'Laura opina que la casa de pepe es muy grande'
+```
+
+
+
+
+
+
 
 

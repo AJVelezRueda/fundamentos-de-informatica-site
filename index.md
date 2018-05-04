@@ -8,6 +8,7 @@
 **Material sobre Python**  
 [Primer pantallazo](./python-basics.md)  
 [Listas y Strings](./python-lists-strings.md)  
+[Expresiones regulares](./python-regex.md)  
 
 **Ecosistema de Python**  
 [Entornos para editar y ejecutar programas](./python-environments.md)  
