@@ -40,6 +40,8 @@ Veamos varios detalles de la herencia a partir de cómo se reflejan en esta defi
 * Se **redefine** el método `comer` que está presente en `Golondrina`. En la primer línea de ese método, se invoca a la versión del mismo método heredada de la clase `Golondrina`. Luego de eso, se hace un agregado que es válido solamente para las instancias de `GolondrinaPensativa`.
 * En forma análoga, se redefine `estaEnEquilibrio`, combinando la condición heredada de `Golondrina` con un agregado propio de `GolondrinaPensativa`.
 
+<br/>
+
 Definamos una instancia de `GolondrinaPensativa` y usémosla un poco:
 ```
 >>> soraya = aves.GolondrinaPensativa()
@@ -91,7 +93,7 @@ Así las cosas, tanto `Golondrina` como `Perro` incorporan la definición del m�
 Este método define una estructura básica: si el animal está débil, se lo alimenta. Esta estructura es común a golondrinas y perros. Por otro lado, notamos que tanto el criterio para considerar que un animal está débil, como el efecto de alimentarse, son diferentes entre estas dos clases.  
 Esta diferencia *no impide* que se pueda definir la estructura en la superclase. Cada subclase proporciona la definición específica de las piezas utilizadas en dicha estructura.
 
-Esto funciona; si definimos
+Esto *funciona*; si definimos
 ```
 >>> ornella = oop.aves.Golondrina()
 >>> lassie = oop.aves.Perro()

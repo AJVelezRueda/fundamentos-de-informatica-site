@@ -15,7 +15,6 @@
 
 **Ecosistema de Python**  
 [Entornos para editar y ejecutar programas](./python-environments.md)  
-<br/>
 
 **Programación orientada a objetos**  
 [Introducción](./oop-intro.md)  
@@ -24,6 +23,8 @@
 
 **Ejercitación**  
 [página de ejercicios](./ejercitacion.md)  
+
+<br/>
 
 # Introducción
 La intención de este sitio es acompañar el curso "Fundamentos de Informática" del Doctorado en Ciencia y Tecnología de la UNQ.
