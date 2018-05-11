@@ -21,6 +21,9 @@
 [Varios objetos, referencias, polimorfismo](./oop-references.md)  
 [Herencia](./oop-inheritance.md)  
 
+**Otras herramientas**  
+[testeo automático](./unit-test.md)  
+
 **Ejercitación**  
 [página de ejercicios](./ejercitacion.md)  
 
