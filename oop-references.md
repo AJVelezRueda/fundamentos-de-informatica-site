@@ -120,6 +120,9 @@ class Perro:
 
     def acariciar(self):
         self._caricias += 1
+
+    def estaDebil(self):
+        return self._caricias < 2
 ```
 
 Con esto, podemos crear un perro y dárselo a Roque como mascota

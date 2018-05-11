@@ -13,14 +13,14 @@
 [Listas y Strings](./python-lists-strings.md)  
 [Expresiones regulares](./python-regex.md)  
 
-Programación orientada a objetos  
-* [Introducción](./oop-intro.md)  
-* [Varios objetos, referencias, polimorfismo](./oop-references.md)  
-* [Herencia](./oop-inheritance.md)  
-
 **Ecosistema de Python**  
 [Entornos para editar y ejecutar programas](./python-environments.md)  
 <br/>
+
+**Programación orientada a objetos**  
+[Introducción](./oop-intro.md)  
+[Varios objetos, referencias, polimorfismo](./oop-references.md)  
+[Herencia](./oop-inheritance.md)  
 
 **Ejercitación**  
 [página de ejercicios](./ejercitacion.md)  
