@@ -16,6 +16,7 @@
 Programación orientada a objetos  
 * [Introducción](./oop-intro.md)  
 * [Varios objetos, referencias, polimorfismo](./oop-references.md)  
+* [Herencia](./oop-inheritance.md)  
 
 **Ecosistema de Python**  
 [Entornos para editar y ejecutar programas](./python-environments.md)  
