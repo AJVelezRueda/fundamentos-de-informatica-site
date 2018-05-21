@@ -5,8 +5,10 @@
 }
 </style>
 
-**Cuestiones generales sobre programación**  
+**Programación orientada a Objetos**  
 [Programación orientada a Objetos](./oop-intro.md)  
+[Referencias y polimorfismo](./oop-references.md)  
+[Herencia](./oop-inheritance.md)  
 
 **Material sobre Python**  
 [Primer pantallazo](./python-basics.md)  
@@ -25,7 +27,9 @@
 [testeo automático](./unit-test.md)  
 
 **Ejercitación**  
-[página de ejercicios](./ejercitacion.md)  
+[ejercicios iniciales](./ejercitacion.md)  
+[ejercicios sobre expresiones regulares](./ejercitacion-regex.md)  
+[ejercicios sobre programación con objetos](./ejercitacion-oop.md)  
 
 <br/>
 
