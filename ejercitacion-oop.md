@@ -22,7 +22,13 @@ Un ornitólogo somete, cada vez que lo decide, a cada una de las aves que tiene 
 El desafío consiste en:
 * implementar la clase `Gorrion`, de forma tal que acepte las operaciones `comer(gramos)`, `volar(kms)`, `css()`, `cssp()`, `cssv()`, y `estaEnEquilibrio()`. Comprobar que dichas operaciones tienen el comportamiento esperado.
 * implementar la clase `Ornitologo`, de forma tal que acepte las operaciones `estudiarAve(ave)`, `avesEnEstudio()`, `realizarRutinaSobreAves()`, `avesEnEquilibrio()`. Realizar rutina es ejecutar la rutina descripta más arriba sobre cada ave que tiene en estudio. Las aves en equilibrio son aquellas aves, entre las que el ornitólogo tiene en estudio, que responden `True` cuando se les consulta `estaEnEquilibrio()`.
-
+* comprobar el código que se escribió con esta secuencia:
+    - definir un ornitólogo, dos golondrinas y dos gorriones, 
+    - inicializar las aves con valores conocidos,
+    - decirle al ornitólogo que estudie una de las golondrinas y los dos gorriones,
+    - decirle al ornitólogo que realice su rutina sobre aves,
+    - verificar los valores de las cuatro aves definidas, para las tres que tiene en estudio el ornitólogo estos valores deberían haber cambiado, para la otra ave no.
+* hola.
 <!--
 poner un test
 agregar strategy
