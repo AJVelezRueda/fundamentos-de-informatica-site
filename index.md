@@ -96,7 +96,7 @@ La intención de este sitio es acompañar el curso "Fundamentos de Informática"
 - Editores o IDE disponibles.
 - Manejador de paquetes o librerías.
     + Facilidad de uso.
-- Vigencia, si "está vivo".
+- Vigencia, si "está vivo" o no.
 - Herramientas de testeo unitario disponibles.
 
 
