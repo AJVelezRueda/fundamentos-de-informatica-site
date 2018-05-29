@@ -24,7 +24,8 @@
 [Herencia](./oop-inheritance.md)  
 
 **Otras herramientas**  
-[testeo automático](./unit-test.md)  
+[Testeo automático](./unit-test.md)  
+[Repositorios de código](./code-repo.md)  
 
 **Ejercitación**  
 [ejercicios iniciales](./ejercitacion.md)  
