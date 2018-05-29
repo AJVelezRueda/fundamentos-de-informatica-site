@@ -48,12 +48,14 @@ Todo repositorio tiene una línea central que por lo general se conoce como *mas
 
 <br/>
 
+Ver las referencias más abajo para ejemplos y explicaciones adicionales de estos conceptos.
+
+<br/>
+
 ## Para seguir leyendo
 
 [Serie de tutoriales de Git](https://www.atlassian.com/git/tutorials)  
 De los varios materiales que miré en su momento, es el que me resultó más claro.
-
-<br/>
 
 [Apunte usado en la UNQ](https://web-ciu-programacion.github.io/site/material/documentos/apuntes/git-pequenia-introduccion-practica.pdf).  
 Muy básico y tal vez podría mejorarse. Introducción paso-a-paso para adquirir la experticia básica que permita comenzar a usar Git en proyectos propios.
