@@ -27,6 +27,9 @@
 [Testeo automático](./unit-test.md)  
 [Repositorios de código](./code-repo.md)  
 
+**Otros**  
+[Información varia](./misc.md) 
+
 **Ejercitación**  
 [ejercicios iniciales](./ejercitacion.md)  
 [ejercicios sobre expresiones regulares](./ejercitacion-regex.md)  
