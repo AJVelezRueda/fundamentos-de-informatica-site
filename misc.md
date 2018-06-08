@@ -14,6 +14,8 @@ Más conocidos por su nombre en inglés, *keyboard shortcuts*.
 Anoto los que uso.
 
 **Editor**
+| Combinación | Efecto |
+| --- | --- |
 | Ctrl-D | duplica línea actual |
 | Ctrl-/ | pone / saca (*toggle*) comentarios sobre el texto seleccionado |
 | Ctrl-B | va a la definición del elemento (método, función, clase) donde está el mouse |
@@ -21,6 +23,8 @@ Anoto los que uso.
 | Ctrl-Space **dos veces** | agrega `import` automáticamente |
 
 **Otros**
+| Combinación | Efecto |
+| --- | --- |
 | Ctrl-Shift-A | lista de comandos |
 | Alt-Ins | crear nuevo archivo / carpeta / etc. |
 | Ctrl-Shift-F12 | maximiza panel actual |
