@@ -23,6 +23,8 @@ Anoto los que uso.
 | Ctrl-/ | pone / saca (*toggle*) comentarios sobre el texto seleccionado |  
 | Ctrl-B | va a la definición del elemento (método, función, clase) donde está el mouse |  
 | Ctrl-Alt-Left/Right | navegación al estilo browser (últimos sitios donde se vio/editó) |  
+| Alt-Left/Right | anterior/siguiente ventana de editor |  
+| Ctrl-Shift-Up/Down | anterior/siguiente ventana de editor |  
 | Ctrl-Space **dos veces** | agrega `import` automáticamente |
 
 <br/>

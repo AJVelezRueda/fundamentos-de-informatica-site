@@ -34,6 +34,7 @@
 [ejercicios iniciales](./ejercitacion.md)  
 [ejercicios sobre expresiones regulares](./ejercitacion-regex.md)  
 [ejercicios sobre programación con objetos](./ejercitacion-oop.md)  
+[Trabajo Práctico](./ejercitacion-tp.md)  
 
 <br/>
 
