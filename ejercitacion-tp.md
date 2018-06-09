@@ -78,20 +78,21 @@ Que sólo agregue un elemento si no está ya en la lista, de acuerdo a su símbo
 
 <br/>
 
-## Moléculas
-Desarrollar una clase `Molecula`. Una molécula se construye en dos fases: primero se agregan los átomos, y luego los enlaces.
-Para cada átomo se indican: el elemento, y el nombre del átomo dentro de la molécula. Estos nombres se usan para definir los enlaces.
+## Compuesto
+Desarrollar una clase `Compuesto`. Un compuesto se construye en dos fases: primero se agregan los átomos, y luego los enlaces.
+Para cada átomo se indican: el elemento, y el nombre del átomo dentro de la molécula. Estos nombres se usan para definir los enlaces.  
+De cada compuesto nos va a interesar, también, la fórmula.
 
-Este es un ejemplo, de la creación de una molécula de amoníaco:
+En este ejemplo se define al compuesto amoníaco (se supone que la variable `tabla` hace referencia a una tabla periódica)
 ```
-    molecNh3 = Molecula()
-    molecNh3.agregarAtomo(tabla.elementoS("N"), "N1")
-    molecNh3.agregarAtomo(tabla.elementoS("H"), "H2")
-    molecNh3.agregarAtomo(tabla.elementoS("H"), "H3")
-    molecNh3.agregarAtomo(tabla.elementoS("H"), "H4")
-    molecNh3.enlazar("N1", "H2")
-    molecNh3.enlazar("N1", "H3")
-    molecNh3.enlazar("N1", "H4")
+    nh3 = Compuesto('NH3')
+    nh3.agregarAtomo(tabla.elementoS("N"), "N1")
+    nh3.agregarAtomo(tabla.elementoS("H"), "H2")
+    nh3.agregarAtomo(tabla.elementoS("H"), "H3")
+    nh3.agregarAtomo(tabla.elementoS("H"), "H4")
+    nh3.enlazar("N1", "H2")
+    nh3.enlazar("N1", "H3")
+    nh3.enlazar("N1", "H4")
 ```
 
 **Atención**  
@@ -99,36 +100,94 @@ Se contemplan solamente enlaces covalentes.
 
 El  modelo debe soportar estas operaciones: 
 * sobre átomos y sus elementos: `cantAtomos()`, `atomosDe(elemento)`, `incluyeAtomo(nombre)`, `incluyeElemento(elemento)`, `elementosPresentes()`.
-* sobre enlaces: `cantEnlaces()`, `cantEnlacesAtomo(nombre)`.
-* otros: `masaMolar()`. 
+* sobre enlaces: `cantEnlaces()`, `cantEnlacesAtomo(nombre)`, `conQuienesEstaEnlazado(atomo)`.
+* sobre masa: `masaMolar()`, `proporcionSobreMasa(elemento)`. 
 
-
-
-
+**Atención**  
+Los enlaces dobles se pueden registar, sencillamente, como dos enlaces. P.ej., el dióxido de carbono puede crearse así:
+```
+    co2 = Compuesto('CO2')
+    co2.agregarAtomoDe(tabla.elementoS('O'), "O1")
+    co2.agregarAtomoDe(tabla.elementoS('O'), "O2")
+    co2.agregarAtomoDe(tabla.elementoS('C'), "C3")
+    co2.enlazar("C3", "O1")
+    co2.enlazar("C3", "O1")
+    co2.enlazar("C3", "O2")
+    co2.enlazar("C3", "O2")
+```
 
 
 ### Mejoras
 Agregar los métodos `agregarAtomos` y `enlazarConVarios`, de forma tal que la creación de una molécula de amoníaco pueda reducirse a lo siguiente:
 ```
-    molec = Molecula()
-    molec.agregarAtomo(tabla.elementoS("N"), "N1")
-    molec.agregarAtomos(tabla.elementoS("H"), ["H2", "H3", "H4"])
-    molec.enlazarConVarios("N1", ["H2", "H3", "H4"])
+    nh3 = Compuesto('NH3')
+    nh3.agregarAtomo(tabla.elementoS("N"), "N1")
+    nh3.agregarAtomos(tabla.elementoS("H"), ["H2", "H3", "H4"])
+    nh3.enlazarConVarios("N1", ["H2", "H3", "H4"])
 ```
 
 Lograr que los nombres de átomo en una molécula se generen automáticamente. Esto nos permitiría llegar a una creación aún más compacta:
 ```
-    molec = Molecula()
-    molec.agregarAtomo(tabla.elementoS("N"))
-    molec.agregarAtomos(tabla.elementoS("H"), 3)
-    molec.enlazarConVarios("N1", ["H2", "H3", "H4"])
+    nh3 = Compuesto('NH3')
+    nh3.agregarAtomo(tabla.elementoS("N"))
+    nh3.agregarAtomos(tabla.elementoS("H"), 3)
+    nh3.enlazarConVarios("N1", ["H2", "H3", "H4"])
 ```
 
-Validación enlaces:
+Validación enlaces:  
+cantEnlacesDisponibles(), enlacesOK(), atomosConEnlacesSobrantes(), atomosConEnlacesDisponibles()
+
+Relación entre elementos:  
+estanEnlazados(el1, el2).
+
+<br/>
+
+**Sugerencia para lo que sigue**  
+Definir variables correspondientes a compuestos comunes que puedan utilizarse en lo que sigue, p.ej. `agua`, `metano`, `nh3`, `co2`. Un ejemplo más voluminoso es la cisteina.
+
+<br/>
+
+## Medio
+Un *medio* incluye varios compuestos, para cada uno se especifica cuántos moles hay.
+
+P.ej. un medio que incluye agua, amoníaco, metano y dióxido de carbono se define así:
+```
+medioRaro = Medio()
+medioRaro.agregarComponente(agua, 100)
+medioRaro.agregarComponente(nh3, 6)
+medioRaro.agregarComponente(metano, 20)
+medioRaro.agregarComponente(co2, 14)
+```
+
+Si se agrega a posteriori ... se suma ...
+
+Operaciones: masaTotal(), elementosPresentes(), compuestosPresentes(), molesElemento(elem), masaCompuesto(comp), masaDeElemento(elem), proporcionElementoEnMasa(elem), proporcionCompuestoEnMasa(comp).
+
+## Descripción textual de medio
+
+```
+descripcion = Descripcion("[H2O][CO2][H2O][CH4]")
+```
+
+apareceCompuesto(comp), molesCompuesto(comp), quienesAparecen(listaCompuestos).
 
 
+### Agregados
+compuestosDesconocidos(listaCompuesto), agregarAMedio(medio).
 
+```
+descripcion2 = DescripcionConCantidades("[H2O](1000)[CO2](50)[CH4](25)")
+```
 
+escalar(nro)
+
+<br/>
+
+## Reacciones químicas
+Se definen a partir de insumos y productos.
+
+reaccion.sePuedeAplicar(medio) # tiene todos los insumos
+reaccion.aplicar(medio, proporcion)
 
 
 
