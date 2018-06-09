@@ -41,13 +41,10 @@ Así, un objeto que represente al elemento oxígeno deberá exhibir este comport
 | `oxigeno.valencia()` | 4 |oxigeno.valenciaS)'C'`.numeroAtomico()| 6 8
 | `oxigeno.valencia()` | 4 |oxigenN.7)opesoAtomico`14numeroAtomico()| 4 8
 | `oxigeno.simbolo()` | "O" |
+
 dado que `oxigeno.valencia()` ` es el carbono, y ``oxigeno.valencia()`` es el nitrógeno.
 
 <br/>
-
-**Sugerencia para lo que sigue**
-Definir una variable, p.ej. `tabla`
-
 
 Los tests deben incluir al oxígeno y al hidrógeno, teniendo en cuenta que el isótopo más usual del hidrógeno no tiene ningún neutrón, siendo 1 su peso atómico.
 
@@ -71,21 +68,63 @@ Así, una tabla periódica a la que se hubieran agregado hidrógeno, oxígeno, c
 | `tabla.elementoS('C').numeroAtomico()` | 6 |
 | `tabla.elementoN(7).pesoAtomico()` | 14 |
 
-dado que `tabla.elementoS('C')` es el carbono, y ``tabla.elementoN(7)` es el nitrógeno.
+dado que `tabla.elementoS('C')` es el carbono, y `tabla.elementoN(7)` es el nitrógeno.
 
-<br/>
-
-**Sugerencia para lo que sigue**
+**Sugerencia para lo que sigue**  
 Definir variables correspondientes a los elementos más usuales, p.ej. `oxigeno`, `hidrogeno`, etc., que puedan ser importadas en los tests de las etapas siguientes. También se puede tener una variable `tabla`, que referencie a una instancia de `TablaPeriodica` que tenga los elementos ya agregados.
 
+### Mejoras
+Que sólo agregue un elemento si no está ya en la lista, de acuerdo a su símbolo.
+
 <br/>
+
+## Moléculas
+Desarrollar una clase `Molecula`. Una molécula se construye en dos fases: primero se agregan los átomos, y luego los enlaces.
+Para cada átomo se indican: el elemento, y el nombre del átomo dentro de la molécula. Estos nombres se usan para definir los enlaces.
+
+Este es un ejemplo, de la creación de una molécula de amoníaco:
+```
+    molecNh3 = Molecula()
+    molecNh3.agregarAtomo(tabla.elementoS("N"), "N1")
+    molecNh3.agregarAtomo(tabla.elementoS("H"), "H2")
+    molecNh3.agregarAtomo(tabla.elementoS("H"), "H3")
+    molecNh3.agregarAtomo(tabla.elementoS("H"), "H4")
+    molecNh3.enlazar("N1", "H2")
+    molecNh3.enlazar("N1", "H3")
+    molecNh3.enlazar("N1", "H4")
+```
+
+**Atención**  
+Se contemplan solamente enlaces covalentes.
+
+El  modelo debe soportar estas operaciones: 
+* sobre átomos y sus elementos: `cantAtomos()`, `atomosDe(elemento)`, `incluyeAtomo(nombre)`, `incluyeElemento(elemento)`, `elementosPresentes()`.
+* sobre enlaces: `cantEnlaces()`, `cantEnlacesAtomo(nombre)`.
+* otros: `masaMolar()`. 
+
+
+
+
+
 
 ### Mejoras
-* Que sólo agregue un elemento si no está ya en la lista, de acuerdo a su símbolo.
+Agregar los métodos `agregarAtomos` y `enlazarConVarios`, de forma tal que la creación de una molécula de amoníaco pueda reducirse a lo siguiente:
+```
+    molec = Molecula()
+    molec.agregarAtomo(tabla.elementoS("N"), "N1")
+    molec.agregarAtomos(tabla.elementoS("H"), ["H2", "H3", "H4"])
+    molec.enlazarConVarios("N1", ["H2", "H3", "H4"])
+```
 
-<br/>
+Lograr que los nombres de átomo en una molécula se generen automáticamente. Esto nos permitiría llegar a una creación aún más compacta:
+```
+    molec = Molecula()
+    molec.agregarAtomo(tabla.elementoS("N"))
+    molec.agregarAtomos(tabla.elementoS("H"), 3)
+    molec.enlazarConVarios("N1", ["H2", "H3", "H4"])
+```
 
-
+Validación enlaces:
 
 
 
