@@ -184,11 +184,11 @@ medioRaro.agregarComponente(metano, 20)
 medioRaro.agregarComponente(co2, 14)
 ```
 
-Si se agrega a posteriori una cantidad de moles de un compuesto que ya está presente, entonces esta cantidad *se suma* a la que ya contiene. P.ej. si agregamos lo siguiente a la definición anterior:
+Si se agrega a posteriori una cantidad de moles de un compuesto que ya está presente, entonces esta cantidad *se suma* a la que ya contiene. P.ej. agregando lo siguiente a la definición anterior:
 ```
 medioRaro.agregarComponente(nh3, 15)
 ```
-entonces este medio pasaría de 6 a 21 moles de amoníaco.
+se *aumenta* la cantidad de amoníaco, de 6 a 21 moles.
 
 El modelo de un medio debe soportar las siguientes operaciones:
 * `masaTotal()`, considerando la cantidad de moles de cada elemento.
@@ -234,7 +234,7 @@ P.ej. este String
 ```
 [H2O][CO2][H2O][CH4]
 ```
-describe un medio que incluye dos moléculas de agua, una de dióxido de carbono y una de metano.
+describe un medio que incluye dos moles de agua, una de dióxido de carbono y una de metano.
 
 <br/>
 
@@ -276,25 +276,37 @@ Finalmente, describimos el efecto de la operación `agregarAMedio`, aplicada sob
 ### Agregados
 **Más operaciones**  
 Lograr que las instancias de `DescripcionMedio` soporten estas operaciones:
-* `compuestosDesconocidos(listaCompuestos)`: devuelve la lista de las fórmulas presentes en la descripción, que no coinciden con ninguno de los compuestos en `listaCompuestos`. P.ej. `miDescripcion.compuestosDesconocidos([agua,nh3,metano])` devuelve `["CO2"]`, porque la lista suministrada no incluye al dióxido de carbono, que sí está presente en la descripción.
+* `compuestosDesconocidos(listaCompuestos)`: devuelve la lista de las fórmulas presentes en la descripción, que no coinciden con ninguno de los compuestos en `listaCompuestos`.  
+P.ej. `miDescripcion.compuestosDesconocidos([agua,nh3,metano])` devuelve `["CO2"]`, porque la lista suministrada no incluye al dióxido de carbono, que sí está presente en la descripción.
 * `agregarTodosAMedio(medio, listaCompuestos)`, que agrega al medio todos los compuestos presentes en la descripción que estén en `listaCompuestos`. 
 * `agregarTodosAMedioConEscala(medio, listaCompuestos, escala)`, idem anterior, multiplicando las cantidades a agregar según la `escala`.  
 P.ej. `miDescripcion.agregarTodosAMedioConEscala([agua,nh3,metano], 100)` agrega 200 moles de agua y 100 de metano.
 
-**Descripciones con cantidades**
+**Descripciones con cantidades**  
 Ajustar el modelo para que soporte descripciones donde luego de cada fórmula se indique la cantidad de moles, como un número entre paréntesis. P.ej. 
 ```
 [H2O](1000)[CO2](50)[CH4](25)
 ```
-describe un medio con 1000 moles de agua, 50 de dióxido de carbono y 25 de metano.
+describe un medio con 1000 moles de agua, 50 de dióxido de carbono y 25 de metano.  
+Deben soportarse todas las operaciones descriptas en esta etapa.
+
+Queda a criterio del desarrollador si modificar la clase `DescripcionMedio` para que soporte descripciones con o sin cantidades, o definir una nueva clase para las descripciones con cantidades.
 
 <br/>
 
 ## Reacciones químicas
-Se definen a partir de insumos y productos.
+Agregar al modelo las *reacciones químicas*. Una reacción química se define a partir de sus conjuntos de reactivos y de productos.  
+Se recomienda crear una nueva clase `ReaccionQuimica`.
 
-reaccion.sePuedeAplicar(medio) # tiene todos los insumos
-reaccion.aplicar(medio, proporcion)
+Se puede asumir que en la reacción intervienen cantidades iguales de todos los reactivos, generándose las mismas cantidades de cada producto.
+
+Se deben soportar las siguientes operaciones:
+* `sePuedeAplicar(medio)`: indica si el medio incluye todos los reactivos de la reacción, de forma tal que la reacción se pueda llevar a cabo.
+* `maximoMoles(medio)`: indica cuántos moles de cada reactivo pueden participar, como máximo, de aplicarse la reacción en el medio indicado.  
+P.ej. si los insumos de una reacción son agua y metano, en un medio que incluya 1000 moles de agua y 40 de metano, `maximoMoles` debe devolver 40, que es la cantidad máxima de moles de cada insumo que pueden intervenir en la reacción.
+* `aplicar(medio,proporcion)`: aplica la reacción al medio indicado, modificando su composición: se consumen los reactivos y se generan los productos. La `proporcion` es respecto de la cantidad máxima de moles que podría participar.  
+En el ejemplo anterior, `aplicar(medio,0.5)` haría reaccionar (y por lo tanto consumir) 20 moles de agua y 20 de metano, generando 20 moles de cada producto.
+
 
 
 
