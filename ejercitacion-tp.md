@@ -136,6 +136,11 @@ Los enlaces dobles se pueden registar, sencillamente, como dos enlaces. P.ej., e
     co2.enlazar("C3", "O2")
 ```
 
+<br/>
+
+**Sugerencia para lo que sigue**  
+Definir variables correspondientes a compuestos comunes que puedan utilizarse en lo que sigue, p.ej. `agua`, `metano`, `nh3`, `co2`. Un ejemplo más voluminoso es la cisteina.
+
 
 ### Mejoras
 Agregar los métodos `agregarAtomos` y `enlazarConVarios`, de forma tal que la creación de una molécula de amoníaco pueda reducirse a lo siguiente:
@@ -166,11 +171,6 @@ Lograr que los compuestos soporten las siguientes operaciones:
 
 <br/>
 
-**Sugerencia para lo que sigue**  
-Definir variables correspondientes a compuestos comunes que puedan utilizarse en lo que sigue, p.ej. `agua`, `metano`, `nh3`, `co2`. Un ejemplo más voluminoso es la cisteina.
-
-<br/>
-
 ## Medio
 Un *medio* incluye varios compuestos, para cada uno se especifica cuántos moles hay.
 
@@ -193,8 +193,22 @@ El modelo de un medio debe soportar las siguientes operaciones:
 * `masaTotal()`, considerando la cantidad de moles de cada elemento.
 * `elementosPresentes()`, considerando todos los compuestos involucrados. 
 ¡OUO! lo que devuelva (lista, set o iterador) no puede tener repetidos.
+* `compuestosPresentes()`, también sin repetidos.
+* `cantMolesElemento(elem)`, la cantidad total de moles del elemento indicado en el medio, considerando todos los compuestos incluidos y sus cantidades.
+* `masaDeCompuesto(comp)` y `masaDeElemento(elem)`, los totales para el medio.
+* `proporcionElementoSobreMasa(elem)` y `proporcionCompuestoSobreMasa(comp)`.
 
-Operaciones: masaTotal(), elementosPresentes(), compuestosPresentes(), molesElemento(elem), masaCompuesto(comp), masaDeElemento(elem), proporcionElementoEnMasa(elem), proporcionCompuestoEnMasa(comp).
+P.ej. en el medio definido tenemos:
+* masa total: 3093 gramos.
+* elementos presentes: hidrógeno, oxígeno, nitrógeno y carbono.
+* compuestos presentes: agua, amoníaco, metano y dióxido de carbono.
+* cantidad de moles de oxígeno: 128; de hidrógeno: 343.
+* masa de agua: 1800 gramos; de amoníaco, 357 gramos.
+* masa de oxígeno: 2048 gramos; de carbono: 408 gramos.
+* proporción de agua sobre masa: 0.5819.
+* proprción de oxígeno sobre masa: 0.6621; de hidrógeno: 0.1108.
+
+<br/>
 
 ## Descripción textual de medio
 
