@@ -72,7 +72,7 @@ dado que `tabla.elementoS('C')` es el carbono, y `tabla.elementoN(7)` es el nitr
 Definir una variable `tabla`, que referencie a una instancia de `TablaPeriodica` que tenga los elementos más comunes ya agregados, para poder importarla en los tests de las etapas siguientes.
 También se pueden definir variables correspondientes a los elementos más usuales, p.ej. `oxigeno`, `hidrogeno`, etc..
 
-### Mejoras
+### Opcionales
 Que sólo agregue un elemento si no está ya en la lista, de acuerdo a su símbolo.
 
 <br/>
@@ -100,7 +100,7 @@ Se contemplan solamente enlaces covalentes.
 El  modelo debe soportar estas operaciones: 
 * sobre átomos y sus elementos: `cantAtomos()`, `atomosDe(elemento)`, `incluyeAtomo(nombre)`, `incluyeElemento(elemento)`, `elementosPresentes()`.  
 ¡OJO! lo que devuelva `elementosPresentes()` (lista, set o iterador) no puede tener repetidos.
-* sobre enlaces: `cantEnlaces()`, `cantEnlacesAtomo(nombre)`, `conQuienesEstaEnlazado(nombre)`.
+* sobre enlaces: `cantEnlaces()`, `cantEnlacesAtomo(nombre)`.
 * sobre masa: `masaMolar()`, `proporcionSobreMasa(elemento)`. 
 
 Así, el compuesto `nh3` definido más arriba debería exhibir el siguiente comportamiento:
@@ -116,8 +116,6 @@ Así, el compuesto `nh3` definido más arriba debería exhibir el siguiente comp
 | `[elem.simbolo() for elem in nh3.elementosPresentes()]` | `["N","H"]` |
 | `nh3.cantEnlaces()]` | 3 |
 | `nh3.cantEnlacesAtomo("H2")]` | 1 |
-| `nh3.conQuienesEstaEnlazado("H2")]` | `["N1"]` |
-| `nh3.conQuienesEstaEnlazado("N1")]` | `["H1", "H2", "H3"]` |
 | `nh3.masaMolar()]` | 17 |
 | `nh3.proporcionSobreMasa(tabla.elementoS('N'))` | 0.8235 |
 
@@ -139,7 +137,7 @@ Definir variables correspondientes a compuestos comunes que puedan utilizarse en
 Como ejemplo con más átomos, enlaces y elementos intervinientes, se puede usar p.ej. la cisteina.
 
 
-### Mejoras
+### Opcionales
 **Formas compactas para crear compuestos**  
 Agregar los métodos `agregarAtomos` y `enlazarConVarios`, de forma tal que la creación de una molécula de amoníaco pueda reducirse a lo siguiente:
 ```
@@ -167,8 +165,9 @@ Lograr que los compuestos soporten las siguientes operaciones:
 
 <br/>
 
-**Relación entre elementos**  
-Lograr que los compuestos soporten esta operación: 
+**Más información sobre enlaces**  
+Lograr que los compuestos soporten las siguientes operaciones: 
+* `conQuienesEstaEnlazado(nombre)`: devuelve una lista con los nombres de los átomos con los que está enlazado el átomo indicado. P.ej. para el amoníaco tenemos `nh3.conQuienesEstaEnlazado("H2")] = ["N1"]` y`nh3.conQuienesEstaEnlazado("N1")] = ["H1", "H2", "H3"]`.
 * `estanEnlazados(elem1, elem2)`: indica si el compuesto incluye al menos un enlace entre átomos de los elementos indicados.
 
 <br/>
@@ -215,24 +214,79 @@ P.ej. en el medio definido tenemos:
 
 <br/>
 
+### Opcionales
+Lograr que los medios soporten estas operaciones:
+* `escalar(numero)`: multiplica las cantidades de cada componente por el número indicado. P.ej. `medioRaro.escalar(3)` pasa la cantidad de agua de 100 moles a 300, la de amoníaco de 21 moles a 63, etc.; mientras que `medioRaro.escalar(0.5)` deja al medio con 50 moles de agua, 10.5 de amoníaco, etc..
+* `incorporarMedio(otroMedio)`: suma a las cantidades del medio que recibe la operación, las incluidas en `otroMedio`.
+* `masMedio(otroMedio)`: devuelve **un nuevo** medio, que es la suma entre el medio que recibe la operación y `otroMedio`. Ni el medio que recibe la operación no debe modificarse ni `otroMedio` deben modificarse.
+
+<br/>
+
 ## Descripción textual de medio
-Lograr que el modelo soporte el análisis de descripciones textuales de medios.
-
+Se define el siguiente formato para describir textualmente un medio: 
 ```
-descripcion = Descripcion("[H2O][CO2][H2O][CH4]")
+[form1][form2]...[formn]
+```
+donde `form1`, ..., `formn` son las fórmulas de los compuestos que conforman el medio. Una fórmula indica la presencia de *un mol* del compuesto: para indicar más de un mol, se repite la fórmula tantas veces como sea necesario.  
+Los corchetes se incluyen en la descripción.
+
+P.ej. este String 
+```
+[H2O][CO2][H2O][CH4]
+```
+describe un medio que incluye dos moléculas de agua, una de dióxido de carbono y una de metano.
+
+<br/>
+
+Definir una clase `DescripcionMedio` que maneje descripciones definidas de esta forma. El String se puede pasar como parámetro cuando se crea una instancia, p.ej. 
+```
+miDescripcion = DescripcionMedio("[H2O][CO2][H2O][CH4]")
 ```
 
-apareceCompuesto(comp), molesCompuesto(comp), quienesAparecen(listaCompuestos).
+Las descripciones deben soportar las siguientes operaciones:
+* `apareceCompuesto(comp)`: indica si un compuesto está presente en la descripción.
+* `molesCompuesto(comp)`: indica cuántos moles de un compuesto incluye la descripción.
+* `quienesAparecen(listaDeCompuestos)`: indica cuáles de los compuestos incluidos en la lista, aparecen en la descripción.
+* `agregarAMedio(medio, compuesto)`: agrega al `medio`, la cantidad de moles del `compuesto` que están incluidas en la descripción.
 
+P.ej. para la descripción definida recién, tenemos
+
+| Propiedad | Valor | 
+| --- | --- |
+| `miDescripcion.apareceCompuesto(agua)` | True |
+| `miDescripcion.apareceCompuesto(co2)` | True |
+| `miDescripcion.apareceCompuesto(nh3)` | False |
+| `miDescripcion.molesCompuesto(agua)` | 2 |
+| `miDescripcion.molesCompuesto(co2)` | 1 |
+| `miDescripcion.molesCompuesto(nh3)` | 0 |
+| `miDescripcion.quienesAparecen([agua, nh3, metano])` | una lista o iterador que incluye `agua` y `metano` |
+
+donde `agua`, `metano`, `co2` y `nh3` son variables que referencian a los compuestos correspondientes.
+
+Finalmente, describimos el efecto de la operación `agregarAMedio`, aplicada sobre el `medioRaro` definido en la etapa previa.
+
+| Operación | Efecto | 
+| --- | --- |
+| `miDescripcion.agregarAMedio(medioRaro,agua)` | El agua en `medioRaro` aumenta en dos moles, pasando de 100 a 102 |
+| `miDescripcion.agregarAMedio(medioRaro,metano)` | El metano en `medioRaro` aumenta en un mol, pasando de 20 a 21 |
+| `miDescripcion.agregarAMedio(medioRaro,nh3)` | No se produce ningún efecto, porque `miDescripcion` no incluye ningún mol de amoníaco |
+
+<br/>
 
 ### Agregados
-compuestosDesconocidos(listaCompuesto), agregarAMedio(medio).
+**Más operaciones**  
+Lograr que las instancias de `DescripcionMedio` soporten estas operaciones:
+* `compuestosDesconocidos(listaCompuestos)`: devuelve la lista de las fórmulas presentes en la descripción, que no coinciden con ninguno de los compuestos en `listaCompuestos`. P.ej. `miDescripcion.compuestosDesconocidos([agua,nh3,metano])` devuelve `["CO2"]`, porque la lista suministrada no incluye al dióxido de carbono, que sí está presente en la descripción.
+* `agregarTodosAMedio(medio, listaCompuestos)`, que agrega al medio todos los compuestos presentes en la descripción que estén en `listaCompuestos`. 
+* `agregarTodosAMedioConEscala(medio, listaCompuestos, escala)`, idem anterior, multiplicando las cantidades a agregar según la `escala`.  
+P.ej. `miDescripcion.agregarTodosAMedioConEscala([agua,nh3,metano], 100)` agrega 200 moles de agua y 100 de metano.
 
+**Descripciones con cantidades**
+Ajustar el modelo para que soporte descripciones donde luego de cada fórmula se indique la cantidad de moles, como un número entre paréntesis. P.ej. 
 ```
-descripcion2 = DescripcionConCantidades("[H2O](1000)[CO2](50)[CH4](25)")
+[H2O](1000)[CO2](50)[CH4](25)
 ```
-
-escalar(nro)
+describe un medio con 1000 moles de agua, 50 de dióxido de carbono y 25 de metano.
 
 <br/>
 
