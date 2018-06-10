@@ -21,6 +21,9 @@ Este modelo se debe construir siguiendo las ideas básicas de la programación o
 1. Deben incluirse tests de cada objetivo parcial, al menos los correspondientes a los ejemplos que se describen para cada uno.
 1. La entrega se debe realizar mediante un repositorio git que incluya el código a entregar, y la documentación que se estime conveniente. Por lo tanto, el mail de entrega debería limitarse a consignar la URL del repositorio. Obviamente, el docente debe tener acceso a dicho repositorio, al menos de lectura.  
 Se pide usar uno entre github, bitbucket o gitlab, que son los repositorios en los que este docente tiene cuenta.
+1. Para considerarse aprobada, una entrega debe incluir todas las etapas salvo la última, que se refiere a las reacciones químicas. Lo indicado como *opcional* en cada etapa no se incluye dentro de este alcance mínimo.
+
+Se recomienda fuertemente realizar el desarrollo etapa por etapa. De hecho, la clase definida en cada etapa se utiliza en las siguientes.
 
 <br/> 
 
@@ -208,7 +211,7 @@ P.ej. en el medio definido tenemos:
 | compuestos presentes | agua, amoníaco, metano y dióxido de carbono | 
 | cantidad de moles por elemento | oxígeno: 128; hidrógeno: 343 |
 | masa por compuesto | agua: 1800 gramos; amoníaco: 357 gramos |
-| masa por elemento | oxígeno: 2048 gramos;carbono: 408 gramos |
+| masa por elemento | oxígeno: 2048 gramos; carbono: 408 gramos |
 | proporción de un compuesto sobre masa | agua: 0.5819 |
 | proprción de un elemento sobre masa | oxígeno: 0.6621; hidrógeno: 0.1108 |
 
