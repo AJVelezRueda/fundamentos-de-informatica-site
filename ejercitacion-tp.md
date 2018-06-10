@@ -24,7 +24,7 @@ Se pide usar uno entre github, bitbucket o gitlab, que son los repositorios en l
 
 <br/> 
 
-## Elementos 
+## Elemento
 Desarrollar la clase `Elemento`, que describe un elemento químico; en rigor, su isótopo más usual.
 Deben contemplarse las siguientes consultas: `cantProtones()`, `cantNeutrones()`, `cantElectrones()`, `numeroAtomico()`, `pesoAtomico()`, `valencia()`, `simbolo()`.  
 Considerar como peso atómico simplemente la suma de cantidades de protones y de neutrones.
