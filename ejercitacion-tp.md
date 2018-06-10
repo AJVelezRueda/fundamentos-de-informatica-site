@@ -1,7 +1,7 @@
 <style>
 .page-header {
-    padding-bottom: 50px;
-    padding-top: 50px;
+	padding-bottom: 50px;
+	padding-top: 50px;
 }
 </style>
 
@@ -38,15 +38,13 @@ Así, un objeto que represente al elemento oxígeno deberá exhibir este comport
 | `oxigeno.cantElectrones()` | 8 |
 | `oxigeno.numeroAtomico()` | 8 |
 | `oxigeno.pesoAtomico()` | 16 |
-| `oxigeno.valencia()` | 4 |oxigeno.valenciaS)'C'`.numeroAtomico()| 6 8
-| `oxigeno.valencia()` | 4 |oxigenN.7)opesoAtomico`14numeroAtomico()| 4 8
+| `oxigeno.valencia()` | 4 |
+| `oxigeno.valencia()` | 4 |
 | `oxigeno.simbolo()` | "O" |
-
-dado que `oxigeno.valencia()` ` es el carbono, y ``oxigeno.valencia()`` es el nitrógeno.
 
 <br/>
 
-Los tests deben incluir al oxígeno y al hidrógeno, teniendo en cuenta que el isótopo más usual del hidrógeno no tiene ningún neutrón, siendo 1 su peso atómico.
+Los tests deben incluir al oxígeno y al hidrógeno, teniendo en cuenta que el isótopo más usual del hidrógeno no tiene ningún neutrón, siendo 1 su peso atómico. Tener en cuenta también que p.ej. para el flúor, el isótopo más usual tiene 10 neutrones y sólo 9 protones. Ergo, la cantidad de neutrones no puede deducirse de la de protones.
 
 **Atención**  
 No incluir, en la definición de la clase `Elemento`, más atributos de los necesarios, ni tampoco menos.
@@ -86,22 +84,22 @@ De cada compuesto nos va a interesar, también, la fórmula.
 
 En este ejemplo se define al compuesto amoníaco (se supone que la variable `tabla` hace referencia a una tabla periódica)
 ```
-    nh3 = Compuesto('NH3')
-    nh3.agregarAtomo(tabla.elementoS("N"), "N1")
-    nh3.agregarAtomo(tabla.elementoS("H"), "H2")
-    nh3.agregarAtomo(tabla.elementoS("H"), "H3")
-    nh3.agregarAtomo(tabla.elementoS("H"), "H4")
-    nh3.enlazar("N1", "H2")
-    nh3.enlazar("N1", "H3")
-    nh3.enlazar("N1", "H4")
+	nh3 = Compuesto('NH3')
+	nh3.agregarAtomo(tabla.elementoS("N"), "N1")
+	nh3.agregarAtomo(tabla.elementoS("H"), "H2")
+	nh3.agregarAtomo(tabla.elementoS("H"), "H3")
+	nh3.agregarAtomo(tabla.elementoS("H"), "H4")
+	nh3.enlazar("N1", "H2")
+	nh3.enlazar("N1", "H3")
+	nh3.enlazar("N1", "H4")
 ```
 
 **Atención**  
 Se contemplan solamente enlaces covalentes.
 
 El  modelo debe soportar estas operaciones: 
-* sobre átomos y sus elementos: `cantAtomos()`, `atomosDe(elemento)`, `incluyeAtomo(nombre)`, `incluyeElemento(elemento)`, `elementosPresentes()`.
-¡OUO! lo que devuelva `elementosPresentes()` (lista, set o iterador) no puede tener repetidos.
+* sobre átomos y sus elementos: `cantAtomos()`, `atomosDe(elemento)`, `incluyeAtomo(nombre)`, `incluyeElemento(elemento)`, `elementosPresentes()`.  
+¡OJO! lo que devuelva `elementosPresentes()` (lista, set o iterador) no puede tener repetidos.
 * sobre enlaces: `cantEnlaces()`, `cantEnlacesAtomo(nombre)`, `conQuienesEstaEnlazado(nombre)`.
 * sobre masa: `masaMolar()`, `proporcionSobreMasa(elemento)`. 
 
@@ -121,52 +119,56 @@ Así, el compuesto `nh3` definido más arriba debería exhibir el siguiente comp
 | `nh3.conQuienesEstaEnlazado("H2")]` | `["N1"]` |
 | `nh3.conQuienesEstaEnlazado("N1")]` | `["H1", "H2", "H3"]` |
 | `nh3.masaMolar()]` | 17 |
-| `nh3.proporcionSobreMasa(tabla.elementoS('N'))]` | 0.8235 |
+| `nh3.proporcionSobreMasa(tabla.elementoS('N'))` | 0.8235 |
 
 **Nota**  
 Los enlaces dobles se pueden registar, sencillamente, como dos enlaces. P.ej., el dióxido de carbono puede crearse así:
 ```
-    co2 = Compuesto('CO2')
-    co2.agregarAtomoDe(tabla.elementoS('O'), "O1")
-    co2.agregarAtomoDe(tabla.elementoS('O'), "O2")
-    co2.agregarAtomoDe(tabla.elementoS('C'), "C3")
-    co2.enlazar("C3", "O1")
-    co2.enlazar("C3", "O1")
-    co2.enlazar("C3", "O2")
-    co2.enlazar("C3", "O2")
+	co2 = Compuesto('CO2')
+	co2.agregarAtomoDe(tabla.elementoS('O'), "O1")
+	co2.agregarAtomoDe(tabla.elementoS('O'), "O2")
+	co2.agregarAtomoDe(tabla.elementoS('C'), "C3")
+	co2.enlazar("C3", "O1")
+	co2.enlazar("C3", "O1")
+	co2.enlazar("C3", "O2")
+	co2.enlazar("C3", "O2")
+```
+
+**Sugerencia para lo que sigue**  
+Definir variables correspondientes a compuestos comunes que puedan utilizarse en test de esta etapa y de las siguientes. P.ej. `agua`, `metano`, `nh3`, `co2`.  
+Como ejemplo con más átomos, enlaces y elementos intervinientes, se puede usar p.ej. la cisteina.
+
+
+### Mejoras
+**Formas compactas para crear compuestos**  
+Agregar los métodos `agregarAtomos` y `enlazarConVarios`, de forma tal que la creación de una molécula de amoníaco pueda reducirse a lo siguiente:
+```
+	nh3 = Compuesto('NH3')
+	nh3.agregarAtomo(tabla.elementoS("N"), "N1")
+	nh3.agregarAtomos(tabla.elementoS("H"), ["H2", "H3", "H4"])
+	nh3.enlazarConVarios("N1", ["H2", "H3", "H4"])
+```
+
+Adicionalmente, se puede lograr que los nombres de átomo en una molécula se generen automáticamente. Esto nos permitiría llegar a una creación aún más compacta:
+```
+	nh3 = Compuesto('NH3')
+	nh3.agregarAtomo(tabla.elementoS("N"))
+	nh3.agregarAtomos(tabla.elementoS("H"), 3)
+	nh3.enlazarConVarios("N1", ["H2", "H3", "H4"])
 ```
 
 <br/>
 
-**Sugerencia para lo que sigue**  
-Definir variables correspondientes a compuestos comunes que puedan utilizarse en lo que sigue, p.ej. `agua`, `metano`, `nh3`, `co2`. Un ejemplo más voluminoso es la cisteina.
-
-
-### Mejoras
-Agregar los métodos `agregarAtomos` y `enlazarConVarios`, de forma tal que la creación de una molécula de amoníaco pueda reducirse a lo siguiente:
-```
-    nh3 = Compuesto('NH3')
-    nh3.agregarAtomo(tabla.elementoS("N"), "N1")
-    nh3.agregarAtomos(tabla.elementoS("H"), ["H2", "H3", "H4"])
-    nh3.enlazarConVarios("N1", ["H2", "H3", "H4"])
-```
-
-Lograr que los nombres de átomo en una molécula se generen automáticamente. Esto nos permitiría llegar a una creación aún más compacta:
-```
-    nh3 = Compuesto('NH3')
-    nh3.agregarAtomo(tabla.elementoS("N"))
-    nh3.agregarAtomos(tabla.elementoS("H"), 3)
-    nh3.enlazarConVarios("N1", ["H2", "H3", "H4"])
-```
-
-**Validación enlaces**  
+**Validación de enlaces**  
 Lograr que los compuestos soporten las siguientes operaciones: 
 * `enlacesOK()`: indica si la definición de enlaces es correcta. Posibles causas para que no sea así: incluir, en un enlace, un nombre de átomo que no pertenece al compuesto (p.ej. en el amoníaco si hiciéramos `nh3.enlazar("N1", "C5")`); o que un átomo tenga más enlaces que su valencia (p.ej. si en lugar de enlazar N1 con H3, enlazáramos por error H2 con H3, entonces H2 tendría más enlaces que su valencia).
 * `atomosConEnlacesSobrantes()`: devuelve la lista de átomos que tienen más enlaces que su valencia.
 * `atomosConEnlacesDisponibles()`: devuelve la lista de átomos que tienen menos enlaces que su valencia, por lo que se pueden agregar enlaces en los que intervenga el átomo. P.ej. en el caso erróneo mencionado más arriba tendríamos `nh3.atomosConEnlacesDisponibles() = ['N1']`.
 
+<br/>
+
 **Relación entre elementos**  
-Lograr que los compuestos soporten las siguientes operaciones: 
+Lograr que los compuestos soporten esta operación: 
 * `estanEnlazados(elem1, elem2)`: indica si el compuesto incluye al menos un enlace entre átomos de los elementos indicados.
 
 <br/>
@@ -191,26 +193,30 @@ entonces este medio pasaría de 6 a 21 moles de amoníaco.
 
 El modelo de un medio debe soportar las siguientes operaciones:
 * `masaTotal()`, considerando la cantidad de moles de cada elemento.
-* `elementosPresentes()`, considerando todos los compuestos involucrados. 
-¡OUO! lo que devuelva (lista, set o iterador) no puede tener repetidos.
+* `elementosPresentes()`, considerando todos los compuestos involucrados.  
+¡OJO! lo que devuelva (lista, set o iterador) no puede tener repetidos.
 * `compuestosPresentes()`, también sin repetidos.
 * `cantMolesElemento(elem)`, la cantidad total de moles del elemento indicado en el medio, considerando todos los compuestos incluidos y sus cantidades.
 * `masaDeCompuesto(comp)` y `masaDeElemento(elem)`, los totales para el medio.
 * `proporcionElementoSobreMasa(elem)` y `proporcionCompuestoSobreMasa(comp)`.
 
 P.ej. en el medio definido tenemos:
-* masa total: 3093 gramos.
-* elementos presentes: hidrógeno, oxígeno, nitrógeno y carbono.
-* compuestos presentes: agua, amoníaco, metano y dióxido de carbono.
-* cantidad de moles de oxígeno: 128; de hidrógeno: 343.
-* masa de agua: 1800 gramos; de amoníaco, 357 gramos.
-* masa de oxígeno: 2048 gramos; de carbono: 408 gramos.
-* proporción de agua sobre masa: 0.5819.
-* proprción de oxígeno sobre masa: 0.6621; de hidrógeno: 0.1108.
+
+| Propiedad | Valor | 
+| --- | --- |
+| masa total | 3093 gramos |
+| elementos presentes | hidrógeno, oxígeno, nitrógeno y carbono |
+| compuestos presentes | agua, amoníaco, metano y dióxido de carbono | 
+| cantidad de moles por elemento | oxígeno: 128; hidrógeno: 343 |
+| masa por compuesto | agua: 1800 gramos; amoníaco: 357 gramos |
+| masa por elemento | oxígeno: 2048 gramos;carbono: 408 gramos |
+| proporción de un compuesto sobre masa | agua: 0.5819 |
+| proprción de un elemento sobre masa | oxígeno: 0.6621; hidrógeno: 0.1108 |
 
 <br/>
 
 ## Descripción textual de medio
+Lograr que el modelo soporte el análisis de descripciones textuales de medios.
 
 ```
 descripcion = Descripcion("[H2O][CO2][H2O][CH4]")
