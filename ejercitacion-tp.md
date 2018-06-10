@@ -71,7 +71,8 @@ Así, una tabla periódica a la que se hubieran agregado hidrógeno, oxígeno, c
 dado que `tabla.elementoS('C')` es el carbono, y `tabla.elementoN(7)` es el nitrógeno.
 
 **Sugerencia para lo que sigue**  
-Definir variables correspondientes a los elementos más usuales, p.ej. `oxigeno`, `hidrogeno`, etc., que puedan ser importadas en los tests de las etapas siguientes. También se puede tener una variable `tabla`, que referencie a una instancia de `TablaPeriodica` que tenga los elementos ya agregados.
+Definir una variable `tabla`, que referencie a una instancia de `TablaPeriodica` que tenga los elementos más comunes ya agregados, para poder importarla en los tests de las etapas siguientes.
+También se pueden definir variables correspondientes a los elementos más usuales, p.ej. `oxigeno`, `hidrogeno`, etc..
 
 ### Mejoras
 Que sólo agregue un elemento si no está ya en la lista, de acuerdo a su símbolo.
@@ -100,10 +101,29 @@ Se contemplan solamente enlaces covalentes.
 
 El  modelo debe soportar estas operaciones: 
 * sobre átomos y sus elementos: `cantAtomos()`, `atomosDe(elemento)`, `incluyeAtomo(nombre)`, `incluyeElemento(elemento)`, `elementosPresentes()`.
-* sobre enlaces: `cantEnlaces()`, `cantEnlacesAtomo(nombre)`, `conQuienesEstaEnlazado(atomo)`.
+¡OUO! lo que devuelva `elementosPresentes()` (lista, set o iterador) no puede tener repetidos.
+* sobre enlaces: `cantEnlaces()`, `cantEnlacesAtomo(nombre)`, `conQuienesEstaEnlazado(nombre)`.
 * sobre masa: `masaMolar()`, `proporcionSobreMasa(elemento)`. 
 
-**Atención**  
+Así, el compuesto `nh3` definido más arriba debería exhibir el siguiente comportamiento:
+
+| Expresión | Resultado |
+| --- | --- |
+| `nh3.cantAtomos()` | 4 |
+| `nh3.atomosDe(tabla.elementoS('H'))` | `["H1", "H2", "H3"]` |
+| `nh3.incluyeAtomo("N1")` | True |
+| `nh3.incluyeAtomo("N4")` | False |
+| `nh3.incluyeElemento(tabla.elementoS('N'))` | True |
+| `nh3.incluyeElemento(tabla.elementoS('O'))` | False |
+| `[elem.simbolo() for elem in nh3.elementosPresentes()]` | `["N","H"]` |
+| `nh3.cantEnlaces()]` | 3 |
+| `nh3.cantEnlacesAtomo("H2")]` | 1 |
+| `nh3.conQuienesEstaEnlazado("H2")]` | `["N1"]` |
+| `nh3.conQuienesEstaEnlazado("N1")]` | `["H1", "H2", "H3"]` |
+| `nh3.masaMolar()]` | 17 |
+| `nh3.proporcionSobreMasa(tabla.elementoS('N'))]` | 0.8235 |
+
+**Nota**  
 Los enlaces dobles se pueden registar, sencillamente, como dos enlaces. P.ej., el dióxido de carbono puede crearse así:
 ```
     co2 = Compuesto('CO2')
@@ -134,11 +154,15 @@ Lograr que los nombres de átomo en una molécula se generen automáticamente. E
     nh3.enlazarConVarios("N1", ["H2", "H3", "H4"])
 ```
 
-Validación enlaces:  
-cantEnlacesDisponibles(), enlacesOK(), atomosConEnlacesSobrantes(), atomosConEnlacesDisponibles()
+**Validación enlaces**  
+Lograr que los compuestos soporten las siguientes operaciones: 
+* `enlacesOK()`: indica si la definición de enlaces es correcta. Posibles causas para que no sea así: incluir, en un enlace, un nombre de átomo que no pertenece al compuesto (p.ej. en el amoníaco si hiciéramos `nh3.enlazar("N1", "C5")`); o que un átomo tenga más enlaces que su valencia (p.ej. si en lugar de enlazar N1 con H3, enlazáramos por error H2 con H3, entonces H2 tendría más enlaces que su valencia).
+* `atomosConEnlacesSobrantes()`: devuelve la lista de átomos que tienen más enlaces que su valencia.
+* `atomosConEnlacesDisponibles()`: devuelve la lista de átomos que tienen menos enlaces que su valencia, por lo que se pueden agregar enlaces en los que intervenga el átomo. P.ej. en el caso erróneo mencionado más arriba tendríamos `nh3.atomosConEnlacesDisponibles() = ['N1']`.
 
-Relación entre elementos:  
-estanEnlazados(el1, el2).
+**Relación entre elementos**  
+Lograr que los compuestos soporten las siguientes operaciones: 
+* `estanEnlazados(elem1, elem2)`: indica si el compuesto incluye al menos un enlace entre átomos de los elementos indicados.
 
 <br/>
 
@@ -159,7 +183,16 @@ medioRaro.agregarComponente(metano, 20)
 medioRaro.agregarComponente(co2, 14)
 ```
 
-Si se agrega a posteriori ... se suma ...
+Si se agrega a posteriori una cantidad de moles de un compuesto que ya está presente, entonces esta cantidad *se suma* a la que ya contiene. P.ej. si agregamos lo siguiente a la definición anterior:
+```
+medioRaro.agregarComponente(nh3, 15)
+```
+entonces este medio pasaría de 6 a 21 moles de amoníaco.
+
+El modelo de un medio debe soportar las siguientes operaciones:
+* `masaTotal()`, considerando la cantidad de moles de cada elemento.
+* `elementosPresentes()`, considerando todos los compuestos involucrados. 
+¡OUO! lo que devuelva (lista, set o iterador) no puede tener repetidos.
 
 Operaciones: masaTotal(), elementosPresentes(), compuestosPresentes(), molesElemento(elem), masaCompuesto(comp), masaDeElemento(elem), proporcionElementoEnMasa(elem), proporcionCompuestoEnMasa(comp).
 
