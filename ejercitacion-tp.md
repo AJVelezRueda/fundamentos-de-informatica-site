@@ -271,7 +271,7 @@ Finalmente, describimos el efecto de la operación `agregarAMedio`, aplicada sob
 
 <br/>
 
-### Agregados
+### Opcionales
 **Más operaciones**  
 Lograr que las instancias de `DescripcionMedio` soporten estas operaciones:
 * `compuestosDesconocidos(listaCompuestos)`: devuelve la lista de las fórmulas presentes en la descripción, que no coinciden con ninguno de los compuestos en `listaCompuestos`.  
