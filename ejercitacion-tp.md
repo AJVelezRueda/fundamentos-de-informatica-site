@@ -11,8 +11,6 @@
 # Ejercicio a entregar - modelo de compuestos y medios químicos
 Se trata de desarrollar un modelo de compuestos y medios químicos, con características muy limitadas, y seguramente con errores, debidos a la ignorancia del redactor.
 
-La consigna se describe mediante una secuencia de objetivos parciales. Se recomienda fuertemente tener en cuenta esta secuencia para desarollar el modelo.
-
 Este modelo se debe construir siguiendo las ideas básicas de la programación orientada a objetos, según se describieron en el curso. 
 
 <br/> 
@@ -21,7 +19,7 @@ Este modelo se debe construir siguiendo las ideas básicas de la programación o
 1. Deben incluirse tests de cada objetivo parcial, al menos los correspondientes a los ejemplos que se describen para cada uno.
 1. La entrega se debe realizar mediante un repositorio git que incluya el código a entregar, y la documentación que se estime conveniente. Por lo tanto, el mail de entrega debería limitarse a consignar la URL del repositorio. Obviamente, el docente debe tener acceso a dicho repositorio, al menos de lectura.  
 Se pide usar uno entre github, bitbucket o gitlab, que son los repositorios en los que este docente tiene cuenta.
-1. Para considerarse aprobada, una entrega debe incluir todas las etapas salvo la última, que se refiere a las reacciones químicas. Lo indicado como *opcional* en cada etapa no se incluye dentro de este alcance mínimo.
+1. Para considerarse aprobada, una entrega debe incluir, al menos, todas las etapas salvo la última, que se refiere a las reacciones químicas. Lo indicado como *opcionales* en cada etapa no se incluye dentro de este alcance mínimo.
 
 Se recomienda fuertemente realizar el desarrollo etapa por etapa. De hecho, la clase definida en cada etapa se utiliza en las siguientes.
 
@@ -42,10 +40,7 @@ Así, un objeto que represente al elemento oxígeno deberá exhibir este comport
 | `oxigeno.numeroAtomico()` | 8 |
 | `oxigeno.pesoAtomico()` | 16 |
 | `oxigeno.valencia()` | 4 |
-| `oxigeno.valencia()` | 4 |
 | `oxigeno.simbolo()` | "O" |
-
-<br/>
 
 Los tests deben incluir al oxígeno y al hidrógeno, teniendo en cuenta que el isótopo más usual del hidrógeno no tiene ningún neutrón, siendo 1 su peso atómico. Tener en cuenta también que p.ej. para el flúor, el isótopo más usual tiene 10 neutrones y sólo 9 protones. Ergo, la cantidad de neutrones no puede deducirse de la de protones.
 
