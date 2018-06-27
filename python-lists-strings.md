@@ -208,6 +208,8 @@ Insistimos en que lo que se obtiene **no** es una lista:
 
 [Esta página](https://medium.freecodecamp.org/python-list-comprehensions-vs-generator-expressions-cef70ccb49db) incluye más info sobre la comparación entre list comprehensions y generator expressions.
 
+En [esta discusión](https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do) se explica en particular por qué conviene usar generadores para manejar grandes volúmenes de datos, y describe la palabra reservada `yield` que se lleva bien con los generadores.
+
 <br/>
 
 ## Strings
